@@ -7,6 +7,9 @@ output: html_document
 opts_chunk$set(dev = 'pdf')
 ```
 
+# Overview
+This report is the second part of the Coursera statistical inference course project. In this report, the ToothGrowth data in the R datasets will be analyzed using some basic inferential statistics. Exploratory data analyses and summary of the data will be first given. After that, comparisons of tooth growth by supp and dose will be performed respectively, with the relevant confidence intervals calculated; different hypotheses and assumptions will be formulated and tested using T statistics. Conclusions will be made based on the statistical results.
+
 # Exploratory Analyses on ToothGrowth Data
 
 Exploratory plots:
@@ -39,9 +42,9 @@ summary(ToothGrowth)
 
 Assuming that the data of tooth growth by OJ and VC are both normally distributed, and the population variances are unequal.
 
-H0: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).
+**H0**: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).
 
-Ha: the tooth growth by VC is larger than the tooth growth by OJ (VC > OJ).
+**Ha**: the tooth growth by VC is larger than the tooth growth by OJ (VC > OJ).
 
 ```{r, echo=FALSE}
 library(datasets)
@@ -66,9 +69,9 @@ Therefore, the null hypothesis is not rejected. There is no difference between t
 
 Assuming that the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.
 
-H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).
+**H0**: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).
 
-Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 < dose 1.0).
+**Ha**: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 < dose 1.0).
 
 ```{r, echo=FALSE}
 library(datasets)
@@ -84,9 +87,9 @@ Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smal
 
 Assuming that the data of tooth growth by dose 0.5 and dose 2.0 are normally distributed, and the population variances are not equal.
 
-H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).
+**H0**: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).
 
-Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 < dose 2.0).
+**Ha**: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 < dose 2.0).
 
 ```{r, echo=FALSE}
 library(datasets)
@@ -102,9 +105,9 @@ Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smal
 
 Assuming that the data of tooth growth by dose 1.0 and dose 2.0 are normally distributed, and the population variances are not equal.
 
-H0: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).
+**H0**: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).
 
-Ha: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 < dose 2.0).
+**Ha**: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 < dose 2.0).
 
 ```{r, echo=FALSE}
 library(datasets)
