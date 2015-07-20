@@ -1,0 +1,117 @@
+---
+title: "Project Report for Basic Inferential Data Analysis"
+author: "Yukai Zou"
+output: html_document
+---
+```{r setup, include=FALSE}
+opts_chunk$set(dev = 'pdf')
+```
+
+# Exploratory Analyses on ToothGrowth Data
+
+Exploratory plots:
+
+```{r, echo=FALSE, fig.width=3.5, fig.height=3.5}
+library(datasets)
+library(ggplot2)
+qplot(supp, len, data = ToothGrowth, geom = "boxplot", fill = supp, main = "Tooth Growth by Different Supp")
+len <- ToothGrowth$len
+dose <- as.factor(ToothGrowth$dose)
+g <- ggplot(data.frame(len, dose), aes(y = len,x = dose, fill = dose))
+g <- g + geom_boxplot() + labs(title = "Tooth Growth by Different Dose", x = "dose", y = "len")
+g
+```
+
+Based on the exploratory plot, in terms of supplements, OJ seems to contribute to a higher tooth growth compared with VC; in terms of dose, a higher dose seems to increase the length of tooth growth. Both observations require hypothesis testing.
+
+# Basic Summary of the Data
+```{r, echo=FALSE}
+library(datasets)
+summary(ToothGrowth)
+```
+
+## Basic Summary of Tooth Growth by Supp
+## Basic Summary of Tooth Growth by Dose
+
+3. Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose. (Only use the techniques from class, even if there's other approaches worth considering)
+
+# Comparisons of Tooth Growth by Supp
+
+Assuming that the data of tooth growth by OJ and VC are both normally distributed, and the population variances are unequal.
+
+H0: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).
+
+Ha: the tooth growth by VC is larger than the tooth growth by OJ (VC > OJ).
+
+```{r, echo=FALSE}
+library(datasets)
+VC <- ToothGrowth$len[1:30]
+OJ <- ToothGrowth$len[31:60]
+
+mOJ <- mean(OJ); mVC <- mean(VC)
+sdOJ <- sqrt(var(OJ)); sdVC <- sqrt(var(VC))
+nOJ <- length(OJ); nVC <- length(VC)
+
+df <- (sdOJ^2/nOJ + sdVC^2/nVC)^2/((sdOJ^2/30)^2/(30-1) + (sdVC^2/30)^2/(30-1))
+CI <- mOJ - mVC + c(-1,1) * qt(0.975, df) * sqrt(sdOJ^2/nOJ + sdVC^2/nVC)
+t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
+```
+
+According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than 0.05.
+
+Therefore, the null hypothesis is not rejected. There is no difference between tooth growth by VC and tooth growth by OJ.
+
+# Comparisons of Tooth Growth by Dose
+## Dose 0.5 v.s. Dose 1.0
+
+Assuming that the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.
+
+H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).
+
+Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 < dose 1.0).
+
+```{r, echo=FALSE}
+library(datasets)
+Dose12 <- subset(ToothGrowth, dose %in% c(0.5,1))
+t.test(len ~ dose, paired = FALSE, var.equal = TRUE, data = Dose12)
+```
+
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.
+
+Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0.
+
+## Dose 0.5 v.s. Dose 2.0
+
+Assuming that the data of tooth growth by dose 0.5 and dose 2.0 are normally distributed, and the population variances are not equal.
+
+H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).
+
+Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 < dose 2.0).
+
+```{r, echo=FALSE}
+library(datasets)
+Dose13 <- subset(ToothGrowth, dose %in% c(0.5,2))
+t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose13)
+```
+
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.
+
+Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0.
+
+## Dose 0.5 v.s. Dose 2.0
+
+Assuming that the data of tooth growth by dose 1.0 and dose 2.0 are normally distributed, and the population variances are not equal.
+
+H0: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).
+
+Ha: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 < dose 2.0).
+
+```{r, echo=FALSE}
+library(datasets)
+Dose23 <- subset(ToothGrowth, dose %in% c(1,2))
+t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose23)
+```
+
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.
+
+Therefore, the null hypothesis is rejected. The tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0.

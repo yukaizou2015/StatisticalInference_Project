@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Exploratory Analyses on ToothGrowth Data</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Exploratory Analyses on ToothGrowth Data</h1>
+
+<p>Exploratory plots:</p>
+
+<p><img src="figure/unnamed-chunk-1-1.pdf" alt="fig"> <img src="figure/unnamed-chunk-1-2.pdf" alt="fig"> </p>
+
+<p>Based on the exploratory plot, in terms of supplements, OJ seems to contribute to a higher tooth growth compared with VC; in terms of dose, a higher dose seems to increase the length of tooth growth. Both observations require hypothesis testing.</p>
+
+<h1>Basic Summary of the Data</h1>
+
+<pre><code>##       len        supp         dose      
+##  Min.   : 4.20   OJ:30   Min.   :0.500  
+##  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+##  Median :19.25           Median :1.000  
+##  Mean   :18.81           Mean   :1.167  
+##  3rd Qu.:25.27           3rd Qu.:2.000  
+##  Max.   :33.90           Max.   :2.000
+</code></pre>
+
+<h2>Basic Summary of Tooth Growth by Supp</h2>
+
+<h2>Basic Summary of Tooth Growth by Dose</h2>
+
+<ol>
+<li>Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose. (Only use the techniques from class, even if there&#39;s other approaches worth considering)</li>
+</ol>
+
+<h1>Comparisons of Tooth Growth by Supp</h1>
+
+<p>Assuming that the data of tooth growth by OJ and VC are both normally distributed, and the population variances are unequal.</p>
+
+<p>H0: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).</p>
+
+<p>Ha: the tooth growth by VC is larger than the tooth growth by OJ (VC &gt; OJ).</p>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  OJ and VC
+## t = 1.9153, df = 55.309, p-value = 0.06063
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1710156  7.5710156
+## sample estimates:
+## mean of x mean of y 
+##  20.66333  16.96333
+</code></pre>
+
+<p>According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than 0.05.</p>
+
+<p>Therefore, the null hypothesis is not rejected. There is no difference between tooth growth by VC and tooth growth by OJ.</p>
+
+<h1>Comparisons of Tooth Growth by Dose</h1>
+
+<h2>Dose 0.5 v.s. Dose 1.0</h2>
+
+<p>Assuming that the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.</p>
+
+<p>H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).</p>
+
+<p>Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 &lt; dose 1.0).</p>
+
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  len by dose
+## t = -6.4766, df = 38, p-value = 1.266e-07
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.983748  -6.276252
+## sample estimates:
+## mean in group 0.5   mean in group 1 
+##            10.605            19.735
+</code></pre>
+
+<p>According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.</p>
+
+<p>Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0.</p>
+
+<h2>Dose 0.5 v.s. Dose 2.0</h2>
+
+<p>Assuming that the data of tooth growth by dose 0.5 and dose 2.0 are normally distributed, and the population variances are not equal.</p>
+
+<p>H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).</p>
+
+<p>Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 &lt; dose 2.0).</p>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -11.799, df = 36.883, p-value = 4.398e-14
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -18.15617 -12.83383
+## sample estimates:
+## mean in group 0.5   mean in group 2 
+##            10.605            26.100
+</code></pre>
+
+<p>According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.</p>
+
+<p>Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0.</p>
+
+<h2>Dose 0.5 v.s. Dose 2.0</h2>
+
+<p>Assuming that the data of tooth growth by dose 1.0 and dose 2.0 are normally distributed, and the population variances are not equal.</p>
+
+<p>H0: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).</p>
+
+<p>Ha: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 &lt; dose 2.0).</p>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -4.9005, df = 37.101, p-value = 1.906e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -8.996481 -3.733519
+## sample estimates:
+## mean in group 1 mean in group 2 
+##          19.735          26.100
+</code></pre>
+
+<p>According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.</p>
+
+<p>Therefore, the null hypothesis is rejected. The tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0.</p>
+
+</body>
+
+</html>
