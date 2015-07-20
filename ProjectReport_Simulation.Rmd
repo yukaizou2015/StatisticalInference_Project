@@ -84,9 +84,16 @@ Therefore, the distribution of 1000 averages of 40 exponentials is approximately
 ## R codes
 Include English explanations of the simulations you ran, with the accompanying R code. Your explanations should make clear what the R code accomplishes.
 ```{r, eval=FALSE}
-library(ggplot2)
-mns <- NULL
-for (i in 1:1000) mns <- c(mns, mean(rexp(40, rate = 0.2)))
+library(ggplot2) # Load the ggplot2 package
+mns <- NULL # Initialize a NULL variable mns
+for (i in 1:1000) { # Run a for loop for 1000 times
+        mns <- c(mns, mean(rexp(40, rate = 0.2)))
+        # Run the random generation for the exponential
+        # distribution with 40 observations and a rate
+        # of 0.2. After that, the average of the 40
+        # observations is calculated, concatenated with
+        # the mns variable to update the previous mns.
+        }
 hist(mns, xlim = c(2,8), main = "Results of one thousand simulations", 
      xlab = "x", ylab = "Count")
 abline(v = mean(mns), lwd = 3)

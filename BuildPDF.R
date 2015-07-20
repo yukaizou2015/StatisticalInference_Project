@@ -6,6 +6,6 @@ require(knitr)
 require(markdown)
 
 # Create .md, .html, and .pdf files
-knit("ProjectReport_ToothGrowth.Rmd")
-markdownToHTML('ProjectReport_ToothGrowth.md', 'ProjectReport_ToothGrowth.html', options=c("use_xhml"))
-system("pandoc -V geometry:margin=1in -s ProjectReport_ToothGrowth.md -o ProjectReport_ToothGrowth.pdf")
+knit("ProjectReport_Simulation.Rmd")
+markdownToHTML('ProjectReport_Simulation.md', 'ProjectReport_Simulation.html', options=c("use_xhml"))
+system("pandoc -V geometry:margin=1in -s ProjectReport_Simulation.md -o ProjectReport_Simulation.pdf")
