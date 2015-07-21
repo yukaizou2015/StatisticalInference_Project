@@ -13,7 +13,7 @@ This report is the first part of the Coursera statistical inference course proje
 Sample mean:
 
 ```
-## [1] 5.010175
+## [1] 4.982267
 ```
 Theoretical mean:
 
@@ -28,7 +28,7 @@ The sample mean is pretty close to the theoretical mean. As is shown in Figure 1
 Sample variance:
 
 ```
-## [1] 0.6259606
+## [1] 0.6535137
 ```
 Theoretical variance:
 
@@ -38,7 +38,7 @@ Theoretical variance:
 
 The sample variance is quite close to the theoretical variance. As is shown in Figure 2 (See Appendix for reference), there is not much difference between the standard deviation of the simulation and the theoretical standard deviation (highlighted in red lines) of the normal distribution curve, which indicates a good estimation of theoretical variance using the sample variance from 1000 simulations.
 
-# Distribution
+# Discussion: Is the Distribution Approximately Normal?
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.pdf) 
 As the number of simulation becomes larger, the estimated sample mean is getting closer to the value of theoretical mean (5.0, highlighted by the horizontal line) with a little fluctuation, which is consistent with the Law of large numbers.
@@ -115,7 +115,7 @@ g2 <- g2 + labs(x = "Number of observations", y = "Cumulative variance")
 g2
 ```
 
-## Figures
+## Simulation Figures
 ![Comparisons of sample mean and theoretical mean](figure/unnamed-chunk-8-1.pdf) 
 
 ![Comparisons of sample variance and theoretical variance](figure/unnamed-chunk-9-1.pdf) 
