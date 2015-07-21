@@ -45,13 +45,6 @@ Assuming that the data of tooth growth by OJ and VC are both normally distribute
 library(datasets)
 VC <- ToothGrowth$len[1:30]
 OJ <- ToothGrowth$len[31:60]
-
-mOJ <- mean(OJ); mVC <- mean(VC)
-sdOJ <- sqrt(var(OJ)); sdVC <- sqrt(var(VC))
-nOJ <- length(OJ); nVC <- length(VC)
-
-df <- (sdOJ^2/nOJ + sdVC^2/nVC)^2/((sdOJ^2/30)^2/(30-1) + (sdVC^2/30)^2/(30-1))
-CI <- mOJ - mVC + c(-1,1) * qt(0.975, df) * sqrt(sdOJ^2/nOJ + sdVC^2/nVC)
 t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
 ```
 
@@ -119,7 +112,26 @@ According to the statistical test, both the lower and upper limit of the confide
 
 # Appendix
 ## R Codes
-To be added
+```{r, eval=FALSE}
+library(datasets) # Load the datasets package
+summary(ToothGrowth) # Show summary of the ToothGrowth dataset
+tapply(ToothGrowth$len, ToothGrowth$supp, summary) # Show summary of the tooth growth by different supp
+tapply(ToothGrowth$len, ToothGrowth$dose, summary) # Show summary of the tooth growth by different dose
+
+# Hypothesis testing
+VC <- ToothGrowth$len[1:30]
+OJ <- ToothGrowth$len[31:60]
+t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
+
+Dose12 <- subset(ToothGrowth, dose %in% c(0.5,1))
+t.test(len ~ dose, paired = FALSE, var.equal = TRUE, data = Dose12)
+
+Dose13 <- subset(ToothGrowth, dose %in% c(0.5,2))
+t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose13)
+
+Dose23 <- subset(ToothGrowth, dose %in% c(1,2))
+t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose23)
+```
 
 ## Exploratory Plots
 ```{r, echo=FALSE, fig.cap="Tooth Growth by Different Supp"}
