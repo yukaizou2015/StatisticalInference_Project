@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Exploratory Analyses on ToothGrowth Data</title>
+<title>Overview</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -163,13 +163,13 @@ hr {
 </head>
 
 <body>
+<h1>Overview</h1>
+
+<p>This report is the second part of the Coursera statistical inference course project. In this report, the ToothGrowth data in the R datasets will be analyzed using some basic inferential statistics. Exploratory data analyses and summary of the data will be first given. After that, comparisons of tooth growth by supp and dose will be performed respectively, with the relevant confidence intervals calculated; different hypotheses and assumptions will be formulated and tested using T statistics. Conclusions will be made based on the statistical results.</p>
+
 <h1>Exploratory Analyses on ToothGrowth Data</h1>
 
-<p>Exploratory plots:</p>
-
-<p><img src="figure/unnamed-chunk-1-1.pdf" alt="fig"> <img src="figure/unnamed-chunk-1-2.pdf" alt="fig"> </p>
-
-<p>Based on the exploratory plot, in terms of supplements, OJ seems to contribute to a higher tooth growth compared with VC; in terms of dose, a higher dose seems to increase the length of tooth growth. Both observations require hypothesis testing.</p>
+<p>For exploratory plots, see Appendix for reference. Based on the plots, in terms of supplements (Figure 1), OJ seems to contribute to a higher tooth growth compared with VC; in terms of dose (Figure 2), a higher dose seems to increase the length of tooth growth. Both observations require hypothesis testing.</p>
 
 <h1>Basic Summary of the Data</h1>
 
@@ -186,17 +186,15 @@ hr {
 
 <h2>Basic Summary of Tooth Growth by Dose</h2>
 
-<ol>
-<li>Use confidence intervals and/or hypothesis tests to compare tooth growth by supp and dose. (Only use the techniques from class, even if there&#39;s other approaches worth considering)</li>
-</ol>
-
 <h1>Comparisons of Tooth Growth by Supp</h1>
 
 <p>Assuming that the data of tooth growth by OJ and VC are both normally distributed, and the population variances are unequal.</p>
 
-<p>H0: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).</p>
+<p><strong>H0</strong>: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).</p>
 
-<p>Ha: the tooth growth by VC is larger than the tooth growth by OJ (VC &gt; OJ).</p>
+<p><strong>Ha</strong>: the tooth growth by VC is larger than the tooth growth by OJ (VC &gt; OJ).</p>
+
+<p><strong>Hypothesis testing</strong>:</p>
 
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -213,7 +211,7 @@ hr {
 
 <p>According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than 0.05.</p>
 
-<p>Therefore, the null hypothesis is not rejected. There is no difference between tooth growth by VC and tooth growth by OJ.</p>
+<p><strong>Conclusion</strong>: The null hypothesis is not rejected. There is no difference between tooth growth by VC and tooth growth by OJ.</p>
 
 <h1>Comparisons of Tooth Growth by Dose</h1>
 
@@ -221,9 +219,11 @@ hr {
 
 <p>Assuming that the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.</p>
 
-<p>H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).</p>
+<p><strong>H0</strong>: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).</p>
 
-<p>Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 &lt; dose 1.0).</p>
+<p><strong>Ha</strong>: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 &lt; dose 1.0).</p>
+
+<p><strong>Hypothesis testing</strong>:</p>
 
 <pre><code>## 
 ##  Two Sample t-test
@@ -240,15 +240,17 @@ hr {
 
 <p>According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.</p>
 
-<p>Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0.</p>
+<p><strong>Conclusion</strong>: The null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0.</p>
 
 <h2>Dose 0.5 v.s. Dose 2.0</h2>
 
 <p>Assuming that the data of tooth growth by dose 0.5 and dose 2.0 are normally distributed, and the population variances are not equal.</p>
 
-<p>H0: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).</p>
+<p><strong>H0</strong>: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).</p>
 
-<p>Ha: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 &lt; dose 2.0).</p>
+<p><strong>Ha</strong>: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 &lt; dose 2.0).</p>
+
+<p><strong>Hypothesis testing</strong>:</p>
 
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -265,15 +267,17 @@ hr {
 
 <p>According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.</p>
 
-<p>Therefore, the null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0.</p>
+<p><strong>Conclusion</strong>: The null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0.</p>
 
 <h2>Dose 0.5 v.s. Dose 2.0</h2>
 
 <p>Assuming that the data of tooth growth by dose 1.0 and dose 2.0 are normally distributed, and the population variances are not equal.</p>
 
-<p>H0: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).</p>
+<p><strong>H0</strong>: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).</p>
 
-<p>Ha: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 &lt; dose 2.0).</p>
+<p><strong>Ha</strong>: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 &lt; dose 2.0).</p>
+
+<p><strong>Hypothesis testing</strong>:</p>
 
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -290,7 +294,19 @@ hr {
 
 <p>According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.</p>
 
-<p>Therefore, the null hypothesis is rejected. The tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0.</p>
+<p><strong>Conclusion</strong>: The null hypothesis is rejected. The tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0.</p>
+
+<h1>Appendix</h1>
+
+<h2>R Codes</h2>
+
+<p>To be added</p>
+
+<h2>Exploratory Plots</h2>
+
+<p><img src="figure/unnamed-chunk-6-1.pdf" alt="Tooth Growth by Different Supp"> </p>
+
+<p><img src="figure/unnamed-chunk-7-1.pdf" alt="Tooth Growth by Different Dose"> </p>
 
 </body>
 
