@@ -14,13 +14,23 @@ This report is the second part of the Coursera statistical inference course proj
 For exploratory plots, see Appendix for reference. Based on the plots, in terms of supplements (Figure 1), OJ seems to contribute to a higher tooth growth compared with VC; in terms of dose (Figure 2), a higher dose seems to increase the length of tooth growth. Both observations require hypothesis testing.
 
 # Basic Summary of the Data
+## General information:
 ```{r, echo=FALSE}
 library(datasets)
 summary(ToothGrowth)
 ```
 
-## Basic Summary of Tooth Growth by Supp
-## Basic Summary of Tooth Growth by Dose
+## Basic summary of tooth growth by supp:
+```{r, echo = FALSE}
+library(datasets)
+tapply(ToothGrowth$len, ToothGrowth$supp, summary)
+```
+
+## Basic summary of tooth growth by dose:
+```{r, echo = FALSE}
+library(datasets)
+tapply(ToothGrowth$len, ToothGrowth$dose, summary)
+```
 
 # Comparisons of Tooth Growth by Supp
 
