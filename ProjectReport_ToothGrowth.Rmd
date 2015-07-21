@@ -11,7 +11,7 @@ opts_chunk$set(dev = 'pdf')
 This report is the second part of the Coursera statistical inference course project. In this report, the ToothGrowth data in the R datasets will be analyzed using some basic inferential statistics. Exploratory data analyses and summary of the data will be first given. After that, comparisons of tooth growth by supp and dose will be performed respectively, with the relevant confidence intervals calculated; different hypotheses and assumptions will be formulated and tested using T statistics. Conclusions will be made based on the statistical results.
 
 # Exploratory Analyses on ToothGrowth Data
-For exploratory plots, see Appendix for reference. Based on the plots, in terms of supplements (Figure 1), OJ seems to contribute to a higher tooth growth compared with VC; in terms of dose (Figure 2), a higher dose seems to increase the length of tooth growth. Both observations require hypothesis testing.
+For exploratory plots, see Appendix for reference. Based on the plots, in terms of supplements (Figure 1), OJ and VC seem to contribute unequally to the tooth growth though it is not easy to tell, which requires two-sided hypothesis testing; in terms of dose (Figure 2), a higher dose seems to increase the length of tooth growth, which can be tested using one-sided hypothesis testing.
 
 # Basic Summary of the Data
 ## General information:
@@ -38,21 +38,21 @@ Assuming that the data of tooth growth by OJ and VC are both normally distribute
 
 **H0**: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).
 
-**Ha**: the tooth growth by VC is larger than the tooth growth by OJ (VC > OJ).
+**Ha**: the tooth growth by VC is different from the tooth growth by OJ (VC is not equal to OJ) (need update).
 
 **Hypothesis testing**:
 ```{r, echo=FALSE}
 library(datasets)
 VC <- ToothGrowth$len[1:30]
 OJ <- ToothGrowth$len[31:60]
-t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
+t.test(OJ, VC, paired = FALSE, var.equal = FALSE, alternative = "two.sided")
 ```
 
 According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than the 0.05 threshold.
 
-**Conclusion**: The null hypothesis is not rejected. There is no difference between tooth growth by VC and tooth growth by OJ.
+**Conclusion**: The null hypothesis is not rejected. There is no significant difference between tooth growth by VC and tooth growth by OJ.
 
-# Comparisons of Tooth Growth by Dose
+# Comparisons of Tooth Growth by Dose (Need replacement for one-sided test)
 ## Dose 0.5 v.s. Dose 1.0
 
 Assuming that the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.
@@ -121,7 +121,7 @@ tapply(ToothGrowth$len, ToothGrowth$dose, summary) # Show summary of the tooth g
 # Hypothesis testing
 VC <- ToothGrowth$len[1:30]
 OJ <- ToothGrowth$len[31:60]
-t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
+t.test(OJ, VC, paired = FALSE, var.equal = FALSE, alternative = "greater")
 
 Dose12 <- subset(ToothGrowth, dose %in% c(0.5,1))
 t.test(len ~ dose, paired = FALSE, var.equal = TRUE, data = Dose12)
