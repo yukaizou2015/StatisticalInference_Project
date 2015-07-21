@@ -45,7 +45,7 @@ CI <- mOJ - mVC + c(-1,1) * qt(0.975, df) * sqrt(sdOJ^2/nOJ + sdVC^2/nVC)
 t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
 ```
 
-According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than 0.05.
+According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than the 0.05 threshold.
 
 **Conclusion**: The null hypothesis is not rejected. There is no difference between tooth growth by VC and tooth growth by OJ.
 
@@ -65,7 +65,7 @@ Dose12 <- subset(ToothGrowth, dose %in% c(0.5,1))
 t.test(len ~ dose, paired = FALSE, var.equal = TRUE, data = Dose12)
 ```
 
-According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than the 0.05 threshold.
 
 **Conclusion**: The null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0.
 
@@ -84,7 +84,7 @@ Dose13 <- subset(ToothGrowth, dose %in% c(0.5,2))
 t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose13)
 ```
 
-According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than the 0.05 threshold.
 
 **Conclusion**: The null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0.
 
@@ -103,7 +103,7 @@ Dose23 <- subset(ToothGrowth, dose %in% c(1,2))
 t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose23)
 ```
 
-According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than 0.05.
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than the 0.05 threshold.
 
 **Conclusion**: The null hypothesis is rejected. The tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0.
 
