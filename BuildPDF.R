@@ -1,6 +1,5 @@
 BuildPDF <- function(x) {
-        # Set working directory
-        setwd("~/Desktop/Coursera/StatisticalInference")
+        # Set working directory manually first
         
         # Load packages
         require(knitr)
