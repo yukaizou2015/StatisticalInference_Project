@@ -7,59 +7,59 @@ output: html_document
 opts_chunk$set(dev = 'pdf')
 ```
 
-# Overview
-This report is the second part of the Coursera statistical inference course project. In this report, the ToothGrowth data in the R datasets will be analyzed using some basic inferential statistics. Exploratory data analyses and summary of the data will be first given. After that, comparisons of tooth growth by supp and dose will be performed respectively, with the relevant confidence intervals calculated; different hypotheses and assumptions will be formulated and tested using T statistics. Conclusions will be made based on the statistical results.
+# 1. Overview
+This report is the second part of the Statistical Inference course project. In this report, the ToothGrowth data in the R datasets will be analyzed using some basic inferential statistics. Exploratory data analyses and summary of the data are first given. After that, comparisons of tooth growth by supp and dose are performed respectively, in which different assumptions, null hypotheses ($H_0$), and alternative hypotheses ($H_a$) are set up and tested using T test. Finally, conclusions are made based on the T statistics.
 
-# Exploratory Analyses on ToothGrowth Data
-For exploratory plots, see Appendix for reference. Based on the plots, in terms of supplements (Figure 1), OJ and VC seem to contribute unequally to the tooth growth though it is not easy to tell, which requires two-sided hypothesis testing; in terms of dose (Figure 2), a higher dose seems to increase the length of tooth growth, which can be tested using one-sided hypothesis testing.
+# 2. Exploratory Analyses on ToothGrowth Data
+For exploratory plots, see Appendix for reference. Based on the plots, in terms of different supp (Figure 1), VC and OJ seem to have different effects on the length of tooth growth, though it is not very easy to distinguish; in terms of dose (Figure 2), a higher dose seems to increase the length of tooth growth. Both observations require two-sided hypothesis testing, which will be explained in details later.
 
-# Basic Summary of the Data
-## General information:
+# 3. Basic Summary of the Data
+## 3.1 General information:
 ```{r, echo=FALSE}
 library(datasets)
 summary(ToothGrowth)
 ```
 
-## Basic summary of tooth growth by supp:
+## 3.2 Basic summary of tooth growth by supp:
 ```{r, echo = FALSE}
 library(datasets)
 tapply(ToothGrowth$len, ToothGrowth$supp, summary)
 ```
 
-## Basic summary of tooth growth by dose:
+## 3.3 Basic summary of tooth growth by dose:
 ```{r, echo = FALSE}
 library(datasets)
 tapply(ToothGrowth$len, ToothGrowth$dose, summary)
 ```
 
-# Comparisons of Tooth Growth by Supp
+# 4. Comparisons of Tooth Growth by Supp
 
-Assuming that the data of tooth growth by OJ and VC are both normally distributed, and the population variances are unequal.
+Assuming that "len" is an iid variable, the data of tooth growth by VC and OJ are both normally distributed, and the population variances are unequal.
 
-**H0**: there is no difference between tooth growth by VC and tooth growth by OJ (VC = OJ).
+$H_0$: The length of tooth growth by VC is equivalent to the length of tooth growth by OJ ($VC = OJ$).
 
-**Ha**: the tooth growth by VC is different from the tooth growth by OJ (VC is not equal to OJ) (need update).
+$H_a$: The length of tooth growth by VC is not equivalent to the length of tooth growth by OJ ($VC \neq  OJ$).
 
 **Hypothesis testing**:
 ```{r, echo=FALSE}
 library(datasets)
 VC <- ToothGrowth$len[1:30]
 OJ <- ToothGrowth$len[31:60]
-t.test(OJ, VC, paired = FALSE, var.equal = FALSE, alternative = "two.sided")
+t.test(OJ, VC, paired = FALSE, var.equal = FALSE)
 ```
 
-According to the statistical test, the confidence interval did not exclude zero, and the p-value is not less than the 0.05 threshold.
+According to the statistical test, the confidence interval did not exclude zero, the absolute value of the test statistic is not greater than `qt(.975, 55.309)` = 2.0038, and the p-value is not less than the 0.05 threshold.
 
-**Conclusion**: The null hypothesis is not rejected. There is no significant difference between tooth growth by VC and tooth growth by OJ.
+**Conclusion**: The null hypothesis is not rejected. The length of tooth growth by VC is equivalent to the length of tooth growth by OJ ($VC = OJ$).
 
-# Comparisons of Tooth Growth by Dose (Need replacement for one-sided test)
-## Dose 0.5 v.s. Dose 1.0
+# 5. Comparisons of Tooth Growth by Dose (Need replacement for one-sided test)
+## 5.1 $Dose_{0.5}$ v.s. $Dose_{1.0}$
 
-Assuming that the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.
+Assuming that "len" is an iid variable, the data of tooth growth by dose 0.5 and dose 1.0 are normally distributed, and the population variances are equal.
 
-**H0**: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 1.0 (dose 0.5 = dose 1.0).
+$H_0$: The length of tooth growth by a dose of 0.5 is equivalent to the length of tooth growth by a dose of 1.0 ($Dose_{0.5} = Dose_{1.0}$).
 
-**Ha**: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0 (dose 0.5 < dose 1.0).
+$H_a$: The length of tooth growth by a dose of 0.5 is not equivalent to the length of tooth growth by a dose of 1.0 ($Dose_{0.5} \neq Dose_{1.0}$).
 
 **Hypothesis testing**:
 ```{r, echo=FALSE}
@@ -68,17 +68,17 @@ Dose12 <- subset(ToothGrowth, dose %in% c(0.5,1))
 t.test(len ~ dose, paired = FALSE, var.equal = TRUE, data = Dose12)
 ```
 
-According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than the 0.05 threshold.
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, the absolute value of the test statistic is much smaller than `qt(.025, 38)` = -2.0244, and the p-value is much smaller than the 0.05 threshold.
 
-**Conclusion**: The null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 1.0.
+**Conclusion**: The null hypothesis is rejected. The length of tooth growth by a dose of 0.5 is not equivalent to the length of tooth growth by a dose of 1.0 ($Dose_{0.5} \neq Dose_{1.0}$).
 
-## Dose 0.5 v.s. Dose 2.0
+## 5.2 $Dose_{0.5}$ v.s. $Dose_{2.0}$
 
-Assuming that the data of tooth growth by dose 0.5 and dose 2.0 are normally distributed, and the population variances are not equal.
+Assuming that "len" is an iid variable, the data of tooth growth by dose 0.5 and dose 2.0 are normally distributed, and the population variances are not equal.
 
-**H0**: there is no difference between tooth growth by dose 0.5 and tooth growth by dose 2.0 (dose 0.5 = dose 2.0).
+$H_0$: The length of tooth growth by a dose of 0.5 is equivalent to the length of tooth growth by a dose of 2.0 ($Dose_{0.5} = Dose_{2.0}$).
 
-**Ha**: the tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0 (dose 0.5 < dose 2.0).
+$H_a$: The length of tooth growth by a dose of 0.5 is not equivalent to the length of tooth growth by a dose of 2.0 ($Dose_{0.5} \neq Dose_{2.0}$).
 
 **Hypothesis testing**:
 ```{r, echo=FALSE}
@@ -87,17 +87,17 @@ Dose13 <- subset(ToothGrowth, dose %in% c(0.5,2))
 t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose13)
 ```
 
-According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than the 0.05 threshold.
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, the absolute value of the test statistic is much smaller than `qt(.025, 36.883)` = -2.0264, and the p-value is much smaller than the 0.05 threshold.
 
-**Conclusion**: The null hypothesis is rejected. The tooth growth by dose 0.5 is smaller than the tooth growth by dose 2.0.
+**Conclusion**: The length of tooth growth by a dose of 0.5 is not equivalent to the length of tooth growth by a dose of 2.0 ($Dose_{0.5} \neq Dose_{2.0}$).
 
-## Dose 0.5 v.s. Dose 2.0
+## 5.3 $Dose_{1.0}$ v.s. $Dose_{2.0}$
 
-Assuming that the data of tooth growth by dose 1.0 and dose 2.0 are normally distributed, and the population variances are not equal.
+Assuming that "len" is an iid variable, the data of tooth growth by dose 1.0 and dose 2.0 are normally distributed, and the population variances are not equal.
 
-**H0**: there is no difference between tooth growth by dose 1.0 and tooth growth by dose 2.0 (dose 1.0 = dose 1.0).
+$H_0$: The length of tooth growth by a dose of 1.0 is equivalent to the length of tooth growth by a dose of 2.0 ($Dose_{1.0} = Dose_{2.0}$).
 
-**Ha**: the tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0 (dose 1.0 < dose 2.0).
+$H_a$: The length of tooth growth by a dose of 1.0 is not equivalent to the length of tooth growth by a dose of 2.0 ($Dose_{1.0} \neq Dose_{2.0}$).
 
 **Hypothesis testing**:
 ```{r, echo=FALSE}
@@ -106,33 +106,13 @@ Dose23 <- subset(ToothGrowth, dose %in% c(1,2))
 t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose23)
 ```
 
-According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, and the p-value is much smaller than the 0.05 threshold.
+According to the statistical test, both the lower and upper limit of the confidence interval is smaller than zero, the absolute value of the test statistic is smaller than `qt(.025, 37.101)` = -2.0260, and the p-value is much smaller than the 0.05 threshold.
 
-**Conclusion**: The null hypothesis is rejected. The tooth growth by dose 1.0 is smaller than the tooth growth by dose 2.0.
+**Conclusion**: The null hypothesis is rejected. The length of tooth growth by a dose of 1.0 is not equivalent to the length of tooth growth by a dose of 2.0 ($Dose_{1.0} \neq Dose_{2.0}$).
+
+\pagebreak
 
 # Appendix
-## R Codes
-```{r, eval=FALSE}
-library(datasets) # Load the datasets package
-summary(ToothGrowth) # Show summary of the ToothGrowth dataset
-tapply(ToothGrowth$len, ToothGrowth$supp, summary) # Show summary of the tooth growth by different supp
-tapply(ToothGrowth$len, ToothGrowth$dose, summary) # Show summary of the tooth growth by different dose
-
-# Hypothesis testing
-VC <- ToothGrowth$len[1:30]
-OJ <- ToothGrowth$len[31:60]
-t.test(OJ, VC, paired = FALSE, var.equal = FALSE, alternative = "greater")
-
-Dose12 <- subset(ToothGrowth, dose %in% c(0.5,1))
-t.test(len ~ dose, paired = FALSE, var.equal = TRUE, data = Dose12)
-
-Dose13 <- subset(ToothGrowth, dose %in% c(0.5,2))
-t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose13)
-
-Dose23 <- subset(ToothGrowth, dose %in% c(1,2))
-t.test(len ~ dose, paired = FALSE, var.equal = FALSE, data = Dose23)
-```
-
 ## Exploratory Plots
 ```{r, echo=FALSE, fig.cap="Tooth Growth by Different Supp"}
 library(datasets)

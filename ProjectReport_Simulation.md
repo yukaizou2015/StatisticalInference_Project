@@ -5,15 +5,15 @@ output: html_document
 ---
 
 
-# Overview
-This report is the first part of the Coursera statistical inference course project. In this report, an exponential distribution is simulated, and the distribution of averages of 40 exponentials is investigated. Explained through figures and explanatory texts, the simulated sample mean is compared with the theoretical mean, the simulated sample variance is compared with the theoretical variance, and whether the distribution is approximately normal is discussed.
+# 1. Overview
+This report is the first part of the Statistical Inference course project. In this report, an exponential distribution is simulated, and the distribution of averages of 40 exponentials is investigated. Explained through figures and explanatory texts, the simulated sample mean is compared with the theoretical mean, the simulated sample variance is compared with the theoretical variance, and whether the distribution is approximately normal is discussed.
 
-# Sample Mean versus Theoretical Mean
+# 2. Sample Mean versus Theoretical Mean
 
 Sample mean:
 
 ```
-## [1] 4.982267
+## [1] 5.021141
 ```
 Theoretical mean:
 
@@ -23,12 +23,12 @@ Theoretical mean:
 
 The sample mean is pretty close to the theoretical mean. As is shown in Figure 1 (See Appendix for reference), the distribution of 1000 simulations looks like the Gaussian distribution (whose mean is 5.0 and variance is 0.625), with the sample mean located near the theoretical mean of (highlighted in blue color).
 
-# Sample Variance versus Theoretical Variance
+# 3. Sample Variance v.s. Theoretical Variance
 
 Sample variance:
 
 ```
-## [1] 0.6535137
+## [1] 0.6261272
 ```
 Theoretical variance:
 
@@ -38,7 +38,7 @@ Theoretical variance:
 
 The sample variance is quite close to the theoretical variance. As is shown in Figure 2 (See Appendix for reference), there is not much difference between the standard deviation of the simulation and the theoretical standard deviation (highlighted in red lines) of the normal distribution curve, which indicates a good estimation of theoretical variance using the sample variance from 1000 simulations.
 
-# Discussion: Is the Distribution Approximately Normal?
+# 4. Discussion: Is the Distribution Approximately Normal?
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.pdf) 
 As the number of simulation becomes larger, the estimated sample mean is getting closer to the value of theoretical mean (5.0, highlighted by the horizontal line) with a little fluctuation, which is consistent with the Law of large numbers.
@@ -48,8 +48,9 @@ As the number of simulation becomes larger, the estimated sample variance has so
 
 According to Central Limit Theorem, when the sample size increases in a simulation, the distribution of iid (independent and identically distributed) variables will become more and more approximately normal, in which the distribution will be approaching the population mean, and the standard deviation will be approaching the standard error of the mean. In our simulation example, the average of 40 exponentials is assumed to be an iid variable, and 1000 averages can be considered as a large collection of data. Therefore, the distribution of 1000 averages of 40 exponentials is approximately normal.
 
-# Appendix
-## R codes
+\pagebreak
+
+# Appendix A: R codes
 
 
 ```r
@@ -114,6 +115,8 @@ g2 <- g2 + geom_hline(yintercept = 5^2/40) + geom_line(size = 2)
 g2 <- g2 + labs(x = "Number of observations", y = "Cumulative variance")
 g2
 ```
+
+\pagebreak
 
 ## Simulation Figures
 ![Comparisons of sample mean and theoretical mean](figure/unnamed-chunk-8-1.pdf) 
