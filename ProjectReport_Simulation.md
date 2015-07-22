@@ -13,7 +13,7 @@ This report is the first part of the Statistical Inference course project. In th
 Sample mean:
 
 ```
-## [1] 5.021141
+## [1] 5.014622
 ```
 Theoretical mean:
 
@@ -28,7 +28,7 @@ The sample mean is pretty close to the theoretical mean. As is shown in Figure 1
 Sample variance:
 
 ```
-## [1] 0.6261272
+## [1] 0.6523797
 ```
 Theoretical variance:
 
@@ -52,49 +52,40 @@ According to Central Limit Theorem, when the sample size increases in a simulati
 
 # Appendix A: R codes
 
-
 ```r
 # Initialization and Simulation
 library(ggplot2) # Load the ggplot2 package
 mns <- NULL # Initialize a NULL variable mns
 for (i in 1:1000) { # Run a for loop for 1000 times
         mns <- c(mns, mean(rexp(40, rate = 0.2)))
-        # Run the random generation for the exponential
-        # distribution with 40 observations and a rate
-        # of 0.2. After that, the average of the 40
-        # observations is calculated, concatenated with
+        # Run the random generation for the exponential distribution with 40 observations and a rate
+        # of 0.2. After that, the average of the 40 observations is calculated, concatenated with
         # the mns variable to update the previous mns.
         }
-
 # Plot Figure 1 in Appendix Section
-hist(mns, xlim = c(2,8), main = "Results of one thousand simulations", 
-     xlab = "x", ylab = "Count")
+hist(mns, xlim = c(2,8), main = "Results of one thousand simulations", xlab = "x", ylab = "Count")
 abline(v = mean(mns), lwd = 3)
 x <- seq(2, 8, length = 1000)
 y <- dnorm(x, mean = 5, sd = 5/sqrt(40))
 par(new = T)
-plot(x, y, type = "l", lwd = 3, xaxt = "n", yaxt = "n", 
-     xlab = "", ylab = "", col = "blue")
+plot(x, y, type = "l", lwd = 3, xaxt = "n", yaxt = "n", xlab = "", ylab = "", col = "blue")
 axis(4, col = "blue", col.axis = "blue")
 abline(v = mean(mns), col = "blue", lwd = 3)
-legend("topright", pch = 20, col = c("black", "blue"), 
-       c("Simulations", "Normal distribution"), cex = 0.7)
-
+legend("topright", pch = 20, col = c("black", "blue"), c("Simulations", "Normal distribution"), 
+       cex = 0.7)
 # Plot Figure 2 in Appendix Section
 hist(mns, xlim = c(2,8))
 x <- seq(2, 8, length = 1000)
 y <- dnorm(x, mean = 5, sd = 5/sqrt(40))
 par(new = T)
-plot(x, y, type = "l", xaxt = "n", yaxt = "n", 
-     xlab = "", ylab = "", col = "red")
+plot(x, y, type = "l", xaxt = "n", yaxt = "n", xlab = "", ylab = "", col = "red")
 axis(4, col = "red", col.axis = "red")
 ssd <- 5 + c(-1, 1) * sqrt(var(mns))
 abline(v = ssd)
 tsd <- 5 + c(-1, 1) * sqrt(5^2/40)
 abline(v = tsd, col = "red")
-legend("topright", pch = 20, col = c("black", "red"), 
-       c("Simulations", "Normal distribution"), cex = 0.65)
-
+legend("topright", pch = 20, col = c("black", "red"), c("Simulations", "Normal distribution"), 
+       cex = 0.65)
 # Plot cumulative mean of the simulations in Distribution Section
 meanmns <- NULL
 varmns <- NULL
@@ -107,7 +98,6 @@ g1 <- ggplot(data.frame(x = 1:1000, y = meanmns), aes(x=x, y=y))
 g1 <- g1 + geom_hline(yintercept = 5.0) + geom_line(size = 2)
 g1 <- g1 + labs(x = "Number of observations", y = "Cumulative mean")
 g1
-
 # Plot cumulative variance of the simulations in Distribution Section
 g2 <- ggplot(data.frame(x = 2:1000, 
              y = varmns[2:1000]), aes(x=x, y=y)) # Omit the first y value since it is NA
@@ -118,7 +108,7 @@ g2
 
 \pagebreak
 
-## Simulation Figures
+# Appendix B: Simulation Figures
 ![Comparisons of sample mean and theoretical mean](figure/unnamed-chunk-8-1.pdf) 
 
 ![Comparisons of sample variance and theoretical variance](figure/unnamed-chunk-9-1.pdf) 

@@ -171,7 +171,7 @@ hr {
 
 <p>Sample mean:</p>
 
-<pre><code>## [1] 5.021141
+<pre><code>## [1] 5.014622
 </code></pre>
 
 <p>Theoretical mean:</p>
@@ -185,7 +185,7 @@ hr {
 
 <p>Sample variance:</p>
 
-<pre><code>## [1] 0.6261272
+<pre><code>## [1] 0.6523797
 </code></pre>
 
 <p>Theoretical variance:</p>
@@ -214,42 +214,34 @@ library(ggplot2) # Load the ggplot2 package
 mns &lt;- NULL # Initialize a NULL variable mns
 for (i in 1:1000) { # Run a for loop for 1000 times
         mns &lt;- c(mns, mean(rexp(40, rate = 0.2)))
-        # Run the random generation for the exponential
-        # distribution with 40 observations and a rate
-        # of 0.2. After that, the average of the 40
-        # observations is calculated, concatenated with
+        # Run the random generation for the exponential distribution with 40 observations and a rate
+        # of 0.2. After that, the average of the 40 observations is calculated, concatenated with
         # the mns variable to update the previous mns.
         }
-
 # Plot Figure 1 in Appendix Section
-hist(mns, xlim = c(2,8), main = &quot;Results of one thousand simulations&quot;, 
-     xlab = &quot;x&quot;, ylab = &quot;Count&quot;)
+hist(mns, xlim = c(2,8), main = &quot;Results of one thousand simulations&quot;, xlab = &quot;x&quot;, ylab = &quot;Count&quot;)
 abline(v = mean(mns), lwd = 3)
 x &lt;- seq(2, 8, length = 1000)
 y &lt;- dnorm(x, mean = 5, sd = 5/sqrt(40))
 par(new = T)
-plot(x, y, type = &quot;l&quot;, lwd = 3, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;, 
-     xlab = &quot;&quot;, ylab = &quot;&quot;, col = &quot;blue&quot;)
+plot(x, y, type = &quot;l&quot;, lwd = 3, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, col = &quot;blue&quot;)
 axis(4, col = &quot;blue&quot;, col.axis = &quot;blue&quot;)
 abline(v = mean(mns), col = &quot;blue&quot;, lwd = 3)
-legend(&quot;topright&quot;, pch = 20, col = c(&quot;black&quot;, &quot;blue&quot;), 
-       c(&quot;Simulations&quot;, &quot;Normal distribution&quot;), cex = 0.7)
-
+legend(&quot;topright&quot;, pch = 20, col = c(&quot;black&quot;, &quot;blue&quot;), c(&quot;Simulations&quot;, &quot;Normal distribution&quot;), 
+       cex = 0.7)
 # Plot Figure 2 in Appendix Section
 hist(mns, xlim = c(2,8))
 x &lt;- seq(2, 8, length = 1000)
 y &lt;- dnorm(x, mean = 5, sd = 5/sqrt(40))
 par(new = T)
-plot(x, y, type = &quot;l&quot;, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;, 
-     xlab = &quot;&quot;, ylab = &quot;&quot;, col = &quot;red&quot;)
+plot(x, y, type = &quot;l&quot;, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, col = &quot;red&quot;)
 axis(4, col = &quot;red&quot;, col.axis = &quot;red&quot;)
 ssd &lt;- 5 + c(-1, 1) * sqrt(var(mns))
 abline(v = ssd)
 tsd &lt;- 5 + c(-1, 1) * sqrt(5^2/40)
 abline(v = tsd, col = &quot;red&quot;)
-legend(&quot;topright&quot;, pch = 20, col = c(&quot;black&quot;, &quot;red&quot;), 
-       c(&quot;Simulations&quot;, &quot;Normal distribution&quot;), cex = 0.65)
-
+legend(&quot;topright&quot;, pch = 20, col = c(&quot;black&quot;, &quot;red&quot;), c(&quot;Simulations&quot;, &quot;Normal distribution&quot;), 
+       cex = 0.65)
 # Plot cumulative mean of the simulations in Distribution Section
 meanmns &lt;- NULL
 varmns &lt;- NULL
@@ -262,7 +254,6 @@ g1 &lt;- ggplot(data.frame(x = 1:1000, y = meanmns), aes(x=x, y=y))
 g1 &lt;- g1 + geom_hline(yintercept = 5.0) + geom_line(size = 2)
 g1 &lt;- g1 + labs(x = &quot;Number of observations&quot;, y = &quot;Cumulative mean&quot;)
 g1
-
 # Plot cumulative variance of the simulations in Distribution Section
 g2 &lt;- ggplot(data.frame(x = 2:1000, 
              y = varmns[2:1000]), aes(x=x, y=y)) # Omit the first y value since it is NA
@@ -273,7 +264,7 @@ g2
 
 <p>\pagebreak</p>
 
-<h2>Simulation Figures</h2>
+<h1>Appendix B: Simulation Figures</h1>
 
 <p><img src="figure/unnamed-chunk-8-1.pdf" alt="Comparisons of sample mean and theoretical mean"> </p>
 
